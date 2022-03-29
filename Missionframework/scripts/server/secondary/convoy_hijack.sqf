@@ -156,7 +156,11 @@ sleep 20;
 deleteMarker _convoy_marker;
 { deleteMarker _x } foreach [_convoy_marker_wp1, _convoy_marker_wp2, _convoy_marker_wp3 ];
 
-combat_readiness = round (combat_readiness * 0.85);
+if (combat_readiness - 15 > 0) then {
+combat_readiness = round (combat_readiness - 15);
+} else {
+   combat_readiness = 0 
+};
 stats_secondary_objectives = stats_secondary_objectives + 1;
 [5] remoteExec ["remote_call_intel"];
 GRLIB_secondary_in_progress = -1; publicVariable "GRLIB_secondary_in_progress";

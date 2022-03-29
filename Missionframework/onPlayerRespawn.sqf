@@ -19,6 +19,10 @@ if (isNil "GRLIB_respawn_loadout") then {
     [player, GRLIB_respawn_loadout] call KPLIB_fnc_setLoadout;
 };
 
+player enableStamina false;
+player setCustomAimCoef 0;
+player setUnitTrait ["Medic", true];
+
 [] call KPLIB_fnc_addActionsPlayer;
 
 // Support Module handling

@@ -40,15 +40,23 @@ private _grp = createGroup [GRLIB_side_enemy, true];
 private _pos = markerPos _sector;
 private _unit = objNull;
 private _units = [];
+private _buildingcount = 0;
+private _randomposition = random (floor (count _positions) - 1);
 for "_i" from 1 to _amount do {
     // Create new group, if current group has 10 units
     if (count (units _grp) >= 10) then {
         _grp = createGroup [GRLIB_side_enemy, true];
     };
+    if ((_buildingcount >= 3 && _buildingcount > random 7) || _randomposition <= 0) then {
+        _randomposition = random (floor (count _positions) - 1);
+        _buildingcount = 0
+    };
 
     _unit = [selectRandom _classnames, _pos, _grp] call KPLIB_fnc_createManagedUnit;
     _unit setDir (random 360);
-    _unit setPos (_positions deleteAt (random (floor (count _positions) - 1)));
+    _unit setPos (_positions deleteAt (_randomposition));
+    // _randomposition = _randomposition - 1;
+    _buildingcount = _buildingcount + 1;
     [_unit, _sector] spawn building_defence_ai;
     _units pushBack _unit;
 };

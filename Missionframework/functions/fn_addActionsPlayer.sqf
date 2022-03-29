@@ -281,8 +281,9 @@ _player addAction [
     false,
     true,
     "",
+        // _originalTarget getVariable ['KPLIB_hasDirectAccess', false]
     "
-        _originalTarget getVariable ['KPLIB_hasDirectAccess', false]
+        true
         && {isNull (objectParent _originalTarget)}
         && {alive _originalTarget}
         && {!(KP_liberation_production isEqualTo [])}
@@ -302,10 +303,10 @@ _player addAction [
     -830,
     false,
     true,
+        // && {_originalTarget getVariable ['KPLIB_hasDirectAccess', false]}
     "",
     "
         KP_liberation_ailogistics
-        && {_originalTarget getVariable ['KPLIB_hasDirectAccess', false]}
         && {isNull (objectParent _originalTarget)}
         && {alive _originalTarget}
         && {_originalTarget getVariable ['KPLIB_fobDist', 99999] < (GRLIB_fob_range * 0.8)}

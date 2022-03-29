@@ -39,9 +39,9 @@ if ( dojump > 0 ) then {
     halo_position = [ halo_position select 0, halo_position select 1, GRLIB_halo_altitude + (random 200) ];
     halojumping = true;
     sleep 0.1;
-    cutRsc ["fasttravel", "PLAIN", 1];
+    cutRsc ["fasttravel", "PLAIN", .3];
     playSound "parasound";
-    sleep 2;
+    sleep 1;
     _backpack = backpack player;
     if ( _backpack != "" && _backpack != "B_Parachute" ) then {
         _backpackcontents = backpackItems player;

@@ -57,13 +57,11 @@ if (isServer) then {
             _zeus setCuratorCoef ["Destroy", -1e8];
             _zeus setCuratorCoef ["Delete", 0];
         } else {
+            removeAllCuratorAddons _zeus;
             _zeus setVariable ["Addons", 3, true];
             _zeus setVariable ["BIS_fnc_initModules_disableAutoActivation", false];
-
             _zeus setCuratorCoef ["Place", 0];
             _zeus setCuratorCoef ["Delete", 0];
-
-            removeAllCuratorAddons _zeus;
         };
 
         _zeus setVariable ["KPLIB_limited", _limited];
@@ -75,9 +73,14 @@ if (isServer) then {
 
     [true, "KPLIB_activateZeusAddons", {
         params [
-            ["_zeus", objNull, [objNull]],
-            ["_addons", [], [[]]]
+            ["_zeus", objNull, [objNull]]
         ];
+        _addons = [];
+        private _cfgPatches = configfile >> "cfgpatches";
+        for "_i" from 0 to (count _cfgPatches - 1) do {
+            _class = _cfgPatches select _i;
+            if (isclass _class) then {_addons set [count _addons,configname _class];};
+        };
 
         _zeus addCuratorAddons _addons;
     }] call BIS_fnc_addScriptedEventHandler;
