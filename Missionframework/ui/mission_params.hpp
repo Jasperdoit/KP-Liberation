@@ -151,9 +151,11 @@ class Params {
     };
     class ReviveMode {
         title = $STR_A3_ReviveMode;
-        values[] = {0, 1};
-        texts[] = {$STR_A3_Disabled, $STR_A3_EnabledForAllPlayers};
-        default = 1;
+        isGlobal = 1;
+        values[] = {-100,0,1};
+        texts[] = {$STR_A3_MissionDefault, $STR_A3_Disabled, $STR_A3_EnabledForAllPlayers};
+        default = 0;
+        function = "bis_fnc_paramReviveMode";
     };
     class ReviveDuration {
         title = $STR_A3_ReviveDuration;
